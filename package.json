@@ -1,0 +1,19 @@
+{
+  "name": "Baseline",
+  "version": "1.0.0",
+  "description": "Personal frontend boilerplate setup",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rbndelrio/baseline.git"
+  },
+  "author": "Ruben Del Rio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rbndelrio/baseline/issues"
+  },
+  "homepage": "https://github.com/rbndelrio/baseline#readme"
+}

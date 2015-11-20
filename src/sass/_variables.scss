@@ -1,0 +1,57 @@
+/*===============
+    Variables
+===============*/
+
+
+/*********************
+MEDIA QUERIES
+*********************/
+
+$lgDesk:	1600px;
+$mdDesk:	1280px;
+$smDesk:	1140px;
+$break:		960px;
+$tablet:	960px;
+$mobile:	768px;
+$phone:		480px;
+$smPhone:	360px;
+
+
+/*********************
+COLORS
+*********************/
+
+$black:			#000;
+$nearBlack:		lighten($black, 10%);
+$white:			#fff;
+$offWhite:		darken($white, 5%);
+
+$outerBG: 		$offWhite;
+
+
+/*********************
+METRICS
+*********************/
+
+$navHeight: 120px;
+$navIndex: 10;
+
+
+/*********************
+TRANSITIONS
+*********************/
+
+$transitionBounce:	.45s cubic-bezier(.15, .8, .3, 1.4);
+$smBounce:			cubic-bezier(.15, .8, .3, 1.2);
+$bounce:			cubic-bezier(.15, .8, .3, 1.4);
+$lgBounce:			cubic-bezier(.15, .8, .3, 1.9);
+$swiftOut:			.3s cubic-bezier(.55,0,.1,1);
+$swift:				cubic-bezier(.55,0,.1,1);
+$hoverState:		.2s;
+
+
+/*********************
+BASE64 IMAGES
+*********************/
+
+//$selectArrow: url(data:image/png;base64,XXX);

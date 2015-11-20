@@ -1,0 +1,200 @@
+/*********************
+TOOLS
+*********************/
+
+@mixin hideText {
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+@mixin posAbs {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+@mixin imgCover($bleed: 100%) {
+	position:absolute;
+	left: 50%;
+	top: 50%;
+	width: auto;
+	height: auto;
+	min-width: $bleed;
+	min-height: $bleed;
+	transform: translateX(-50%) translateY(-50%);
+	-webkit-backface-visibility: hidden;
+}
+
+@mixin clear {
+	*zoom: 1;
+	&:before, &:after { content: " "; display: table; }
+	&:after { clear: both; }
+}
+
+@mixin valign($child) {
+	display: table;
+	& > #{$child} {
+		display: table-cell;
+		vertical-align: middle;
+	}
+}
+
+@mixin equi-dist($child) {
+	text-align: justify;
+	&:after{
+		content: '';
+		display: inline-block;
+		width: 100%;
+	}
+	& > #{$child} {
+		display: inline-block;
+	}
+}
+
+@mixin svg-bg($name1, $name2) {
+	background-image: url('../images/#{$name1}.png'); // IE8 & below
+	background-image: none, url('../images/#{$name2}.svg');
+}
+
+@mixin image2x($name, $extension: 'jpg') {
+	background-image: url('../images/#{$name}.#{$extension}');
+	@media only screen and (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+		background-image: url('../images/#{$name}@2x.#{$extension}');
+	}
+}
+
+@mixin break-max($size) {
+	@media only screen and (max-width: $size) { @content; }
+}
+
+@mixin break-min($size) {
+	@media only screen and (min-width: $size + 1) { @content; }
+}
+
+
+/*********************
+COMPONENTS
+*********************/
+
+@mixin neatUnderline($state: 'normal', $color: $white) {
+	@if $state == 'normal' {
+		&:after {
+			content:'';
+			width:0;
+			height:2px;
+			display:block;
+			background-color: $color;
+			position:absolute;
+			bottom:0;
+			left:50%;
+			transition:$transitionBounce;
+		}        
+	} @else  if $state == 'alt' {
+		&:after {
+			width: 100%;
+			left: 0;
+			transition:$transitionBounce;
+		}
+	}
+}
+
+@mixin hoverScale {
+	transition: .2s $lgBounce transform;
+	transform: scale(.901);
+	&:hover {
+		transform: scale(1);
+		transform: scale(1) translate3d(0,0,0);
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+	}
+}
+
+@mixin mobileHeight {
+	padding-top: 250px !important;
+	width: 100%;
+	padding-top: 0 !important;
+	height: auto;
+	.vaContainer {
+		padding: 40px 0;
+		padding: 10vw 0;
+		height: auto;
+		position: relative;
+	}
+}
+
+@mixin dropShadow($x: 12px, $y: 12px, $blur: 25px, $color: #000, $opacity: 0.5) {
+	-webkit-filter: drop-shadow($x $y $blur rgba($color, $opacity));
+	-ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=15, Color='#444')";
+	filter: drop-shadow($x $y $blur rgba($color, $opacity));
+	filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=15, Color='#444')";
+	filter: url("data:image/svg+xml;utf8,<svg height='0' xmlns='http://www.w3.org/2000/svg'><filter id='drop-shadow'><feGaussianBlur in='SourceAlpha' stdDeviation='4'/><feOffset dx='0' dy='15' result='offsetblur'/><feFlood flood-color='rgba(0,0,0,0.25)'/><feComposite in2='offsetblur' operator='in'/><feMerge><feMergeNode/><feMergeNode in='SourceGraphic'/></feMerge></filter></svg>#drop-shadow");
+}
+
+
+/*********************
+TYPOGRAPHY
+*********************/
+
+@mixin font--xx {
+	//font-family:;
+	//A debate for the ages.
+	//-webkit-font-smoothing: antialiased; //antialias
+	//-moz-osx-font-smoothing: grayscale; //antialias
+}
+
+@mixin xx--book {
+	@include font--xx;
+	//font-weight:400; //subpixel
+	font-weight:500; //antialias
+}
+
+@mixin xx--medium {
+	@include font--xx;
+	//font-weight:500; //subpixel
+	font-weight:600; //antialias
+}
+
+@mixin xx--bold {
+	@include font--xx;
+	//font-weight:600; //subpixel
+	font-weight:700; //antialias
+}
+
+
+/*********************
+BROWSER COMPATIBILITY
+----------------------
+http://browserstrangeness.bitbucket.org/css_hacks.html
+*********************/
+
+//Safari 7.1+ (+iOS)
+@mixin compat-safari {
+	_::-webkit-full-page-media, _:future, :root & {
+		@content;
+	}
+}
+
+//Internet Explorer 9
+@mixin compat-ie-9 {
+	@media screen and (min-width:0\0) and (min-resolution:.001dpcm) {
+		& { @content; }
+	}
+}
+
+//Internet Explorer 10
+@mixin compat-ie-10 {
+	// This is actually IE10-Edge.
+	// Append \9 to each property to
+	// make it specific to IE10.
+	_:-ms-lang(x), & {
+		& { @content; }
+	}
+}
+
+//Internet Explorer 9, 10, 11
+@mixin compat-ie-9-11 {
+	@media screen and (min-width:0\0) and (min-resolution:+72dpi) {
+		& { @content; }
+	}
+}

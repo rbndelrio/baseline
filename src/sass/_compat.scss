@@ -1,0 +1,26 @@
+/*===============
+  Legacy Styles
+===============*/
+
+html {
+
+/* Safari 7.1+ (+iOS) */
+@include compat-safari {
+
+}
+
+/* Internet Explorer 9 */
+@include compat-ie-9 {
+
+}
+
+/* Internet Explorer 10-Edge */
+/* Append \9 to each property to make it IE10-only. */
+@include compat-ie-10 {
+
+}
+
+/* Internet Explorer 9-11 */
+@include compat-ie-9-11 {
+
+} }

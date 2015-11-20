@@ -1,0 +1,24 @@
+/*====================
+   Top-level Styles
+====================*/
+
+// Tools
+@import "normalize";
+@import "fonts";
+@import "variables";
+@import "mixins";
+@import "compat";
+//@import "owl";
+
+// Global styles
+@import "base.scss";
+
+// Page Elements
+//@import "header.scss";
+//@import "footer.scss";
+
+
+/*** Pages ***/
+
+// Homepage
+@import "home.scss";
