@@ -7,9 +7,7 @@ var gulp = require('gulp'),
 	prefix = require('gulp-autoprefixer'),
 	minifyCss = require('gulp-minify-css'),
 
-	assign = require('lodash.assign'),
 	source = require('vinyl-source-stream'),
-	watchify = require('watchify'),
 	browserify = require('browserify'),
 
 	php = require('gulp-connect-php'),
@@ -67,9 +65,6 @@ gulp.task('uglify', ['scripts'], function() {
 });
 
 // Browserify
-//var opts = assign({}, watchify.args, customOpts);
-//var b = watchify(browserify(opts));
-//b.on('update', bundle);
 var customOpts = {entries: [vendor + 'vendor.js']};
 var b = browserify(customOpts);
 
