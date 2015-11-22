@@ -14,8 +14,8 @@
 .col-10,
 .col-11,
 .col-12 {
-    display:inline-block;
-    vertical-align:top;
+	display:inline-block;
+	vertical-align:top;
 }
 
 .col-1  {width:08.3333%;}
@@ -32,58 +32,58 @@
 .col-12 {width:100%;}
 
 @include break-max($mobile) {
-    .col-3,
-    .col-4,
-    .col-5,
-    .col-6,
-    .col-7,
-    .col-8,
-    .col-9{width: 100%;}
+	.col-3,
+	.col-4,
+	.col-5,
+	.col-6,
+	.col-7,
+	.col-8,
+	.col-9		{width: 100%;}
 }
 
 @include break-max($tablet) {
-    .md-col-1   {width:08.3333%;}
-    .md-col-2   {width:16.6667%;}
-    .md-col-3   {width:25.0000%;}
-    .md-col-4   {width:33.3333%;}
-    .md-col-5   {width:41.6667%;}
-    .md-col-6   {width:50.0000%;}
-    .md-col-7   {width:58.3333%;}
-    .md-col-8   {width:66.6667%;}
-    .md-col-9   {width:75.0000%;}
-    .md-col-10  {width:83.3333%;}
-    .md-col-11  {width:91.6667%;}
-    .md-col-12  {width:100%;}
+	.md-col-1   {width:08.3333%;}
+	.md-col-2   {width:16.6667%;}
+	.md-col-3   {width:25.0000%;}
+	.md-col-4   {width:33.3333%;}
+	.md-col-5   {width:41.6667%;}
+	.md-col-6   {width:50.0000%;}
+	.md-col-7   {width:58.3333%;}
+	.md-col-8   {width:66.6667%;}
+	.md-col-9   {width:75.0000%;}
+	.md-col-10  {width:83.3333%;}
+	.md-col-11  {width:91.6667%;}
+	.md-col-12  {width:100%;}
 
-    .md-hide    {display: none;}
+	.md-hide	{display: none;}
 }
 
 @include break-max($mobile) {
-    .sm-col-1   {width:08.3333%;}
-    .sm-col-2   {width:16.6667%;}
-    .sm-col-3   {width:25.0000%;}
-    .sm-col-4   {width:33.3333%;}
-    .sm-col-5   {width:41.6667%;}
-    .sm-col-6   {width:50.0000%;}
-    .sm-col-7   {width:58.3333%;}
-    .sm-col-8   {width:66.6667%;}
-    .sm-col-9   {width:75.0000%;}
-    .sm-col-10  {width:83.3333%;}
-    .sm-col-11  {width:91.6667%;}
-    .sm-col-12  {width:100%;}
+	.sm-col-1   {width:08.3333%;}
+	.sm-col-2   {width:16.6667%;}
+	.sm-col-3   {width:25.0000%;}
+	.sm-col-4   {width:33.3333%;}
+	.sm-col-5   {width:41.6667%;}
+	.sm-col-6   {width:50.0000%;}
+	.sm-col-7   {width:58.3333%;}
+	.sm-col-8   {width:66.6667%;}
+	.sm-col-9   {width:75.0000%;}
+	.sm-col-10  {width:83.3333%;}
+	.sm-col-11  {width:91.6667%;}
+	.sm-col-12  {width:100%;}
 
-    .sm-hide    {display: none;}
+	.sm-hide	{display: none;}
 }
 
 @include break-max($phone) {
-    .ph-hide    {display: none;}
+	.ph-hide	{display: none;}
 }
 @include break-min($phone) {
-    .ph-show    {display: none;}
+	.ph-show	{display: none;}
 }
 @include break-min($tablet) {
-    .md-show    {display: none;}
+	.md-show	{display: none;}
 }
 @include break-min($mobile) {
-    .sm-show    {display: none;}
+	.sm-show	{display: none;}
 }

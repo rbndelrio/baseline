@@ -18,12 +18,12 @@ body{max-width: 100%; overflow-x: hidden;}
 
 /* Basic Styles */
 
-.ta-left        {text-align: left}
-.ta-center      {text-align: center}
-.ta-right       {text-align: right}
-.color-white    {color: $white}
-.border-round   {border-radius: 6px}
-.bg-white       {background-color: $white}
+.ta-left		{text-align: left}
+.ta-center		{text-align: center}
+.ta-right		{text-align: right}
+.color-white	{color: $white}
+.border-round	{border-radius: 6px}
+.bg-white		{background-color: $white}
 
 .hover-white:hover	{color: $white}
 .hover-white:hover:after {background: $white}
@@ -41,30 +41,30 @@ body{max-width: 100%; overflow-x: hidden;}
 }
 
 .dec-underline {
-    text-decoration: none;
-    position:relative;
-    transition: $hoverState color;
-    &:after {
-        content:'';
-        width:100%;
-        height:1px;
-        background:$white;
-        display:block;
-        position:absolute;
-        left:0;
-        bottom:-2px;
-        transition: $hoverState background;
-    }
+	text-decoration: none;
+	position:relative;
+	transition: $hoverState color;
+	&:after {
+		content:'';
+		width:100%;
+		height:1px;
+		background:$white;
+		display:block;
+		position:absolute;
+		left:0;
+		bottom:-2px;
+		transition: $hoverState background;
+	}
 }
 
 ::selection { 
-    background: $nearBlack;
-    color: $offWhite; 
+	background: $nearBlack;
+	color: $offWhite; 
 }
 
 .full-container {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 .pad {
@@ -73,20 +73,20 @@ body{max-width: 100%; overflow-x: hidden;}
 }
 
 .va-container {
-    width:100%;
-    height:100%;
-    margin: 0 auto;
-    @include valign('.va-body');
-    .va-body {width:100%}
-    .va-contentt {
-        text-align:center;
-        *:first-child {
-            margin-top: 0;
-        }
-        *:last-child {
-            margin-bottom: 0;
-        }
-    }
+	width:100%;
+	height:100%;
+	margin: 0 auto;
+	@include valign('.va-body');
+	.va-body {width:100%}
+	.va-contentt {
+		text-align:center;
+		*:first-child {
+			margin-top: 0;
+		}
+		*:last-child {
+			margin-bottom: 0;
+		}
+	}
 }
 
 
@@ -97,24 +97,24 @@ input[type="search"],
 input[type="email"],
 textarea,
 select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    outline: none;
-    border: none;
-    width: 100%;
-    padding: 14px 20px;
-    line-height: 1.2;
-    background: $white;
-    box-shadow: 0 0 0 0 transparent;
-    transition: $hoverState;
-    &:focus,
-    &:active {}
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	outline: none;
+	border: none;
+	width: 100%;
+	padding: 14px 20px;
+	line-height: 1.2;
+	background: $white;
+	box-shadow: 0 0 0 0 transparent;
+	transition: $hoverState;
+	&:focus,
+	&:active {}
 
-    @include break-max($phone) {
-    	width: 100%;
-        text-align: center;
-    }
+	@include break-max($phone) {
+		width: 100%;
+		text-align: center;
+	}
 }
 select {
 	//background: $white no-repeat $selectArrow center right;
@@ -122,12 +122,12 @@ select {
 }
 
 button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    outline: none;
-    border: none;
-    cursor: default;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	outline: none;
+	border: none;
+	cursor: default;
 }
 
 
@@ -136,41 +136,41 @@ button {
 .btn,
 .homeHeroNavBtn,
 a:link {
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .btn {
-    display: inline-block;
-    padding: 16px 40px;
-    font-size: 14px;
-    line-height: 1.0;
-    text-transform: uppercase;
-    transition: $hoverState background;
+	display: inline-block;
+	padding: 16px 40px;
+	font-size: 14px;
+	line-height: 1.0;
+	text-transform: uppercase;
+	transition: $hoverState background;
 }
 
 .link {
-    @include break-max($phone) {
-        width: 100%;
-    }
+	@include break-max($phone) {
+		width: 100%;
+	}
 }
 
 
 /* Basic Layout */
 
 .wrapper {
-    margin: 0 auto;
-    //max-width: 1980px;
-    font-size:0;
+	margin: 0 auto;
+	//max-width: 1980px;
+	font-size:0;
 }
 
 .center {
-    max-width:1200px;
-    margin-left:auto;
-    margin-right:auto;
-    padding-left:30px;
-    padding-right:30px;
-    @include break-max($phone) {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
+	max-width:1200px;
+	margin-left:auto;
+	margin-right:auto;
+	padding-left:30px;
+	padding-right:30px;
+	@include break-max($phone) {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
 }
