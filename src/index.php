@@ -44,7 +44,8 @@
 	<footer>
 	</footer>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script> -->
+<script src="/min/vendor.js"></script>
 <script src="/min/scripts.js"></script>
 </body>
 </html>

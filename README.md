@@ -24,7 +24,9 @@ Development
     npm install
     gulp watch
 
-The `gulp images` task utilizes the OS X-only [ImageOptim](https://imageoptim.com/) and [ImageAlpha](https://pngmini.com/) to maximize lossless compression ([benchmarks](http://jamiemason.github.io/ImageOptim-CLI/)). JPEGs should be processed through JPEGmini manually unless you want to modify gulp-imageoptim yourself.
+For vendor libraries, use `bundle` task. If the libraries aren't minified, use the `mindep` task.
+
+The `images` task utilizes the OS X-only [ImageOptim](https://imageoptim.com/) and [ImageAlpha](https://pngmini.com/) to maximize lossless compression ([benchmarks](http://jamiemason.github.io/ImageOptim-CLI/)). JPEGs should be processed through JPEGmini manually unless you want to modify gulp-imageoptim yourself.
 
 Getting sourcemaps working is a lost cause right now. Feel free to integrate and PR it!
 

@@ -1,19 +1,25 @@
 // Modules
 var gulp = require('gulp'),
 	sass = require('gulp-ruby-sass'),
-	php = require('gulp-connect-php'),
 	plumber = require('gulp-plumber'),
 	uglify = require('gulp-uglify'),
 	concat = require('gulp-concat'),
-	imgopt = require('gulp-imageoptim'),
 	prefix = require('gulp-autoprefixer'),
 	minifyCss = require('gulp-minify-css'),
+
+	assign = require('lodash.assign'),
+	source = require('vinyl-source-stream'),
+	watchify = require('watchify'),
+	browserify = require('browserify'),
+
+	php = require('gulp-connect-php'),
+	imgopt = require('gulp-imageoptim'),
 	browsersync = require('browser-sync').create();
 	//sourcemaps = require('gulp-sourcemaps'),
 
 
 // Paths
-var base	=	'/',
+var base	=	'',
 
 	bld		=	base	+ 'build/',
 	app 	=	base	+ 'src/',
@@ -24,14 +30,17 @@ var base	=	'/',
 	imgDir	=	app 	+ 'img/',
 	imgBld	=	bld 	+ 'img/',
 
-	jsDir	=	app 	+ 'js/',
-	jsBld	=	bld 	+ 'min/',
-
 	sassDir	=	app 	+ 'sass/',
 	cssBld	=	bld 	+ 'css/',
 	mapDir	=	cssBld	+ 'map/',
 
-	miscDir	=	app		+ 'uploads/',
+	jsDir	=	app 	+ 'js/',
+	jsBld	=	bld 	+ 'min/',
+
+	vendor	=	app		+ 'vendor/',
+	vndBld	=	bld		+ 'min/',
+
+	miscDir	=	app		+ 'uploads/';
 
 
 // Concatenate JS
@@ -41,67 +50,85 @@ gulp.task('scripts',function(){
 	//	jsDir + 'owl.carousel.js',
 	//	jsDir + 'js.js'])
 	return gulp.src(jsDir + '*.js')
-	.pipe(plumber())
-	.on('error', function (err){
-		console.error('!!!JS!!!', err.message);})
-	.pipe(concat('scripts.js'))
-	.pipe(gulp.dest(jsBld))
+		.pipe(plumber())
+		.on('error', function (err){
+			console.error('!!!JS!!!', err.message);})
+		.pipe(concat('scripts.js'))
+		.pipe(gulp.dest(jsBld))
 });
 
 
 // Uglify JS
 gulp.task('uglify', ['scripts'], function() {
 	return gulp.src(jsBld + 'scripts.js')
-	.pipe(plumber())
-	.pipe(uglify({
-		preserveComments: 'license'
-		}))
-	.pipe(gulp.dest(jsBld));
+		.pipe(plumber())
+		.pipe(uglify({preserveComments: 'license'}))
+		.pipe(gulp.dest(jsBld));
+});
+
+// Browserify
+//var opts = assign({}, watchify.args, customOpts);
+//var b = watchify(browserify(opts));
+//b.on('update', bundle);
+var customOpts = {entries: [vendor + 'vendor.js']};
+var b = browserify(customOpts);
+
+gulp.task('bundle', bundle);
+
+function bundle() {
+	return b.bundle()
+		.pipe(plumber())
+		.on('error', function (err){
+			console.error('!!!VENDOR!!!', err.message);})
+		.pipe(source('vendor.js'))
+		.pipe(gulp.dest(vndBld));
+}
+
+gulp.task('mindep', ['bundle'], function() {
+	return gulp.src(vndBld + 'vendor.js')
+		.pipe(plumber())
+		.pipe(uglify({preserveComments: 'license'}))
+		.pipe(gulp.dest(vndBld));
 });
 
 
 // SASS
 gulp.task('styles',function(){
-	return sass(sassDir, {sourcemap: true})
-	.pipe(plumber())
-	.on('error', function (err) {
-		console.error('!!!CSS!!!', err.message);})
-	.pipe(autoprefixer({
-        browsers: ['last 2 versions', 'ie 9'],
-        cascade: false
-    }))
-	.pipe(gulp.dest(cssBld))
-	.pipe(browsersync.stream({match: '**/*.css'}));
-	cb(err);
+	return sass(sassDir)
+		.pipe(plumber())
+		.on('error', function (err) {
+			console.error('!!!CSS!!!', err.message);})
+		.pipe(prefix({
+			browsers: ['last 3 versions', 'ie 9'],
+			cascade: false
+		}))
+		.pipe(gulp.dest(cssBld))
+		.pipe(browsersync.stream({match: '**/*.css'}));
+		cb(err);
 });
 
 
 // Minify CSS
 gulp.task('minify-css', ['styles'], function() {
 	return gulp.src(cssBld + '*.css')
-	.pipe(minifyCss())
-	.pipe(gulp.dest(cssBld))
+		.pipe(minifyCss())
+		.pipe(gulp.dest(cssBld))
 });
 
 
 // Image Optimization
-gulp.task('images',function () {
-	gulp.src([imgDir + '*', '!**/*.db'])
-	.pipe(plumber())
-	.pipe(imgopt())
-	.pipe(gulp.dest(imgBld))
-});
 gulp.task('images', function() {
-    return gulp.src(imgDir + '*')
-        .pipe(imageOptim.optimize())
-        .pipe(gulp.dest(imgBld));
+	return gulp.src(imgDir + '*')
+		.pipe(imageOptim.optimize())
+		.pipe(gulp.dest(imgBld));
 });
+
 
 // Markup Stuff
 gulp.task('markup',function(){
-	gulp.src(mkpDir + '**/*.php', {base: mkpDir})
-	.pipe(gulp.dest(mkpBld))
-	.pipe(browsersync.stream());
+	return gulp.src(mkpDir + '**/*.php', {base: mkpDir})
+		.pipe(gulp.dest(mkpBld))
+		.pipe(browsersync.stream());
 });
 
 
