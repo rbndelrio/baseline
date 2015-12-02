@@ -89,7 +89,7 @@ gulp.task('mindep', ['bundle'], function() {
 
 // SASS
 gulp.task('styles',function(){
-	return sass(sassDir)
+	return sass(sassDir + 'style.scss')
 		.pipe(plumber())
 		.on('error', function (err) {
 			console.error('!!!CSS!!!', err.message);})
