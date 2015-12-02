@@ -8,7 +8,10 @@ html {
 
 .image-replacement {@include hideText;}
 
-a {text-decoration: none;}
+a {
+	text-decoration: none;
+	outline: none;
+}
 
 img.res {max-width: 100%}
 
