@@ -65,19 +65,16 @@ gulp.task('uglify', ['scripts'], function() {
 });
 
 // Browserify
-var customOpts = {entries: [vendor + 'vendor.js']};
-var b = browserify(customOpts);
-
-gulp.task('bundle', bundle);
-
-function bundle() {
-	return b.bundle()
-		.pipe(plumber())
-		.on('error', function (err){
-			console.error('!!!VENDOR!!!', err.message);})
+gulp.task('bundle', ['uglify'], function() {
+	var customOpts = {
+		entries: [vendor + 'vendor.js']
+	};
+	var b = browserify(customOpts);
+	return b
+		.bundle()
 		.pipe(source('vendor.js'))
 		.pipe(gulp.dest(vndBld));
-}
+});
 
 gulp.task('mindep', ['bundle'], function() {
 	return gulp.src(vndBld + 'vendor.js')
@@ -138,11 +135,11 @@ gulp.task('watch', ['default', 'php'], function() {
 	browsersync.init({
 		proxy: '127.0.0.1:5678',
 		port: 1234,
-		open: true,
+		open: false,
 		notify: false
 	});
-	gulp.watch(jsDir + '*.js',['scripts']).on("change", browsersync.reload);
-	gulp.watch(mkpDir + '**/*.php',['markup']);
+	gulp.watch(jsDir + '*.js',['uglify']).on("change", browsersync.reload);
+	gulp.watch(base + '**/*.php',['markup']);
 	gulp.watch(sassDir + '*.scss',['styles']);
 });
 

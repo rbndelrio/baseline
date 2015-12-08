@@ -40,6 +40,7 @@
 		</nav>
 	</header>
 	<div class="content">
+		<h1>Hello, world!</h1>
 	</div>
 	<footer>
 	</footer>
