@@ -64,9 +64,20 @@ summary {
 }
 
 /**
+ * 0. Remove the gap between these elements and their containers:
+ *    https://github.com/h5bp/html5-boilerplate/issues/440
  * 1. Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
  * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
  */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle; /* 0 */
+}
 
 audio,
 canvas,
@@ -519,12 +530,13 @@ input[type="search"]::-webkit-search-decoration {
 
 /**
  * Define consistent border, margin, and padding.
+ * ^Actually, no. Remove the styles entirely.
  */
 
 fieldset {
-  border: 1px solid #c0c0c0;
-  margin: 0 2px;
-  padding: 0.35em 0.625em 0.75em;
+    border: 0;
+    margin: 0;
+    padding: 0;
 }
 
 /**
@@ -545,10 +557,12 @@ legend {
 
 /**
  * Remove default vertical scrollbar in IE 8/9/10/11.
+ * Only allow vertical resizing
  */
 
 textarea {
   overflow: auto;
+  resize: vertical;
 }
 
 /**
@@ -575,4 +589,86 @@ table {
 td,
 th {
   padding: 0;
+}
+
+/* Print Media
+   ========================================================================== */
+
+/**
+ * Inlined to avoid the additional HTTP request:
+ * http://www.phpied.com/delay-loading-your-print-css/
+ */
+
+@media print {
+    // *,
+    // *:before,
+    // *:after,
+    // *:first-letter,
+    // *:first-line {
+    //     background: transparent !important;
+    //     color: #000 !important; Black prints faster:
+    //                                http://www.sanbeiji.com/archives/953
+    //     box-shadow: none !important;
+    //     text-shadow: none !important;
+    // }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    // a[href]:after {
+    //     content: " (" attr(href) ")";
+    // }
+
+    // abbr[title]:after {
+    //     content: " (" attr(title) ")";
+    // }
+
+    /*
+     * Don't show links that are fragment identifiers,
+     * or use the `javascript:` pseudo protocol
+     */
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        // content: "";
+        text-decoration: none;
+    }
+
+    pre,
+    blockquote {
+        // border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    /*
+     * Printing Tables:
+     * http://css-discuss.incutio.com/wiki/Printing_Tables
+     */
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    // img {
+    //     max-width: 100% !important;
+    // }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
 }

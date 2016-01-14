@@ -1,9 +1,11 @@
 /* Global Styles */
 
 html {
+	font-size: $fontBase;
 	box-sizing: border-box;
 	background-color: $outerBG;
 }
+
 *, *:before, *:after {box-sizing: inherit}
 
 .image-replacement {@include hideText;}
@@ -16,7 +18,12 @@ a {
 img.res {max-width: 100%}
 
 body>br, body>b {display: none;}
-body{max-width: 100%; overflow-x: hidden;}
+body{
+	max-width: 100%;
+	overflow-x: hidden;
+    font-size: 1em;
+    line-height: 1.4em;
+}
 
 
 /* Basic Styles */
@@ -60,9 +67,20 @@ body{max-width: 100%; overflow-x: hidden;}
 	}
 }
 
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid $nearBlack;
+    margin: 1em 0;
+    padding: 0;
+}
+
 ::selection { 
-	background: $nearBlack;
 	color: $offWhite; 
+    text-shadow: none;
+	background: $nearBlack;
 }
 
 .full-container {
@@ -145,7 +163,7 @@ a:link {
 .btn {
 	display: inline-block;
 	padding: 16px 40px;
-	font-size: 14px;
+	font-size: 1em;
 	line-height: 1.0;
 	text-transform: uppercase;
 	transition: $hoverState background;
